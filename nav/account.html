@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account - Pet Care Blog</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Pet Care Blog</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="caretips.html">Care Tips</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="health.html">Health</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="breeds.html">Breeds</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="training.html">Training</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="account.html">Account <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h1>Account</h1>
+        <div class="row">
+            <div class="col-md-4">
+                <!-- User Profile Image -->
+                <img src="C:\Users\bhagw\OneDrive\Desktop\blogweb\user.png" alt="User Image" class="img-fluid profile-image mb-3">
+                <!-- Edit Profile Button -->
+                <button class="btn btn-primary btn-block mb-3">Edit Profile</button>
+            </div>
+            <div class="col-md-8">
+                <form>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" placeholder="Enter your name" readonly value="Kunal Gaikwad">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="Enter your email" readonly value="kunalgaikwad9322@gmail.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="joinDate">Join Date</label>
+                        <input type="text" class="form-control" id="joinDate" placeholder="Join Date" readonly value="January 1, 2024">
+                    </div>
+                    <div class="form-group">
+                        <label for="petsOwned">Pets Owned</label>
+                        <input type="text" class="form-control" id="petsOwned" placeholder="Pets Owned" readonly value="1 dog, 2 cats">
+                    </div>
+                    <div class="form-group">
+                        <label for="bio">Bio</label>
+                        <textarea class="form-control" id="bio" rows="3" readonly>Im a pet lover who enjoys spending quality time with his furry companions. I believes in providing the best care and love to my pets.</textarea>
+                    </div>
+                    <!-- Add more fields as needed -->
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
