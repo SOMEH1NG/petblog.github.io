@@ -1,68 +1,104 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Breeds - Pet Care Blog</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Pet Care Blog</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="about.html">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="caretips.html">Care Tips</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="health.html">Health</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="breeds.html">Breeds <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="training.html">Training</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="account.html">Account</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
-    <div class="container mt-5">
-        <h1>Breeds</h1>
-        <p>Explore different breeds and their characteristics.</p>
-        <div class="row">
-            <div class="col-md-4 mb-4">
-                <div class="card">
-                    <img src="dog1.jpg" class="card-img-top" alt="Breed 1">
-                    <div class="card-body">
-                        <h5 class="card-title">Breed 1</h5>
-                        <p class="card-text">Description of Breed 1.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card">
-                    <img src="dog2.jpg" class="card-img-top" alt="Breed 2">
-                    <div class="card-body">
-                        <h5 class="card-title">Breed 2</h5>
-                        <p class="card-text">Description of Breed 2.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Breeds - Pet Care Blog</title> 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
+    <style> 
+        .card { 
+            transition: transform 0.3s; 
+            height: 100%; 
+        } 
+        .card:hover { 
+            transform: scale(1.05); 
+        } 
+        .card-img-top { 
+            height: 200px;
+            object-fit: cover; 
+        } 
+    </style> 
+</head> 
+<body> 
+    <nav class="navbar navbar-expand-lg navbar-light bg-light"> 
+        <a class="navbar-brand" href="#">Pet Care Blog</a> 
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> 
+            <span class="navbar-toggler-icon"></span> 
+        </button> 
+        <div class="collapse navbar-collapse" id="navbarNav"> 
+            <ul class="navbar-nav ml-auto"> 
+                <li class="nav-item"> 
+                    <a class="nav-link" href="C:\Users\bhagw\OneDrive\Desktop\blogweb\about.html">About</a> 
+                </li> 
+                <li class="nav-item"> 
+                    <a class="nav-link" href="caretips.html">Care Tips</a> 
+                </li> 
+                <li class="nav-item"> 
+                    <a class="nav-link" href="health.html">Health</a> 
+                </li> 
+                <li class="nav-item active"> 
+                    <a class="nav-link" href="breeds.html">Breeds <span class="sr-only">(current)</span></a> 
+                </li> 
+                <li class="nav-item"> 
+                    <a class="nav-link" href="training.html">Training</a> 
+                </li> 
+                <li class="nav-item"> 
+                    <a class="nav-link" href="account.html">Account</a> 
+                </li> 
+            </ul> 
+        </div> 
+    </nav> 
+ 
+    <div class="container mt-5"> 
+        <h1>Breeds</h1> 
+        <p>Explore different breeds and their characteristics.</p> 
+        <div class="row"> 
+            <div class="col-md-3 mb-4"> 
+                <div class="card"> 
+                    <img src="C:\Users\bhagw\OneDrive\Desktop\blogweb\dog1.jpg" class="card-img-top" alt="Golden Retriever"> 
+                    <div class="card-body"> 
+                        <h5 class="card-title">Golden Retriever</h5> 
+                        <p class="card-text">The Golden Retriever is a large-sized breed of dog bred as gun dogs to retrieve shot waterfowl, such as ducks and upland game birds, during hunting and shooting parties.</p> 
+                        <a href="#" class="btn btn-primary">Learn More</a> 
+                    </div> 
+                </div> 
+            </div> 
+            <div class="col-md-3 mb-4"> 
+                <div class="card"> 
+                    <img src="C:\Users\bhagw\OneDrive\Desktop\blogweb\dog2.jpg" class="card-img-top" alt="German Shepherd"> 
+                    <div class="card-body"> 
+                        <h5 class="card-title">German Shepherd</h5> 
+                        <p class="card-text">The German Shepherd is a breed of working dog originally bred in Germany for herding sheep. Known for their strength, intelligence, and obedience, German Shepherds make excellent working dogs and companions.</p> 
+                        <a href="#" class="btn btn-primary">Learn More</a> 
+                    </div> 
+                </div> 
+            </div> 
+            <div class="col-md-3 mb-4"> 
+                <div class="card"> 
+                    <img src="C:\Users\bhagw\OneDrive\Desktop\blogweb\dog3.jpeg" class="card-img-top" alt="Labrador Retriever"> 
+                    <div class="card-body"> 
+                        <h5 class="card-title">Labrador Retriever</h5> 
+                        <p class="card-text">The Labrador Retriever is one of the most popular dog breeds in the United States. They are known for their friendly and outgoing nature, as well as their intelligence and trainability.</p> 
+                        <a href="#" class="btn btn-primary">Learn More</a> 
+                    </div> 
+                </div> 
+            </div> 
+            <div class="col-md-3 mb-4"> 
+                <div class="card"> 
+                    <img src="C:\Users\bhagw\OneDrive\Desktop\blogweb\dog2.jpg" class="card-img-top" alt="Beagle"> 
+                    <div class="card-body"> 
+                        <h5 class="card-title">Beagle</h5> 
+                        <p class="card-text">The Beagle is a small to medium-sized hound dog. They are known for their keen sense of smell and tracking ability, making them excellent hunting companions. Beagles are also popular family pets due to their friendly and gentle temperament.</p> 
+                        <a href="#" class="btn btn-primary">Learn More</a> 
+                    </div> 
+                </div> 
+            </div> 
+        </div> 
+    </div> 
+ 
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script> 
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
+</body> 
 </html>
+
