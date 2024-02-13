@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .alert {
+            color: #721c24;
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Sign Up</h1>
+        <form id="signupForm" action="home.html" method="post">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <div class="input-group">
+                    <input type="password" class="form-control" id="password" name="password" required>
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" id="togglePassword">Show</button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <div class="input-group">
+                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" id="toggleConfirmPassword">Show</button>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Sign Up</button>
+            <a href="blogweb\login\signup.html" class="btn btn-link">Already have an account? Login</a>
+            <div id="passwordMismatchAlert" class="alert d-none" role="alert">
+                Passwords do not match! Please check and reenter.
+            </div>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(function() {
+            $('#togglePassword').click(function() {
+                var passwordInput = $('#password');
+                var button = $(this);
+                if (passwordInput.attr('type') === 'password') {
+                    passwordInput.attr('type', 'text');
+                    button.text('Hide');
+                } else {
+                    passwordInput.attr('type', 'password');
+                    button.text('Show');
+                }
+            });
+
+            $('#toggleConfirmPassword').click(function() {
+                var confirmPasswordInput = $('#confirmPassword');
+                var button = $(this);
+                if (confirmPasswordInput.attr('type') === 'password') {
+                    confirmPasswordInput.attr('type', 'text');
+                    button.text('Hide');
+                } else {
+                    confirmPasswordInput.attr('type', 'password');
+                    button.text('Show');
+                }
+            });
+
+            $('#signupForm').submit(function(e) {
+                e.preventDefault();
+                var password = $('#password').val();
+                var confirmPassword = $('#confirmPassword').val();
+                if (password !== confirmPassword) {
+                    $('#passwordMismatchAlert').removeClass('d-none');
+                    return;
+                }
+                this.submit();
+            });
+        });
+    </script>
+</body>
+</html>
