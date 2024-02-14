@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pet Care Assistant</title>
+    <title>Pet Care Assistant Chat</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
@@ -16,7 +16,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            height: 400vh;
         }
 
         .chat-box {
@@ -105,6 +105,11 @@
             color: #007bff;
             text-decoration: underline;
         }
+
+        .assistant-message ol,
+        .assistant-message ul {
+            padding-left: 20px;
+        }
     </style>
 </head>
 
@@ -144,7 +149,7 @@
     <div class="chat-container">
         <div class="chat-box">
             <div class="chat-header">
-                <h4>Pet Assistant</h4>
+                <h4>Pet Care Assistant</h4>
             </div>
             <div class="chat-body" id="chat-history">
                 <!-- Chat history -->
@@ -169,6 +174,8 @@
             responseText = responseText.replace(/`([^`]+)`/g, '<code>$1</code>'); // Code
             responseText = responseText.replace(/\[([^[\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>'); // Links
             responseText = responseText.replace(/!\[([^\]]+)\]\(([^)]+)\)/g, '<img src="$2" alt="$1">'); // Images
+            responseText = responseText.replace(/^(\d+\.\s.*(?:\n(?!\d+\.).*)*)/gm, '<ol>$1</ol>'); // Ordered List
+            responseText = responseText.replace(/^(\*\s.*(?:\n(?!\*).*)*)/gm, '<ul>$1</ul>'); // Unordered List
             // Add more Markdown elements as needed
             return responseText;
         }
