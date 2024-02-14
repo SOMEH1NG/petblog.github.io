@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Care Assistant Chat</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+        }
+
+        .chat-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .chat-box {
+            width: 400px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background-color: #5e8bff;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            border-radius: 15px 15px 0 0;
+        }
+
+        .chat-body {
+            padding: 20px;
+            overflow-y: auto;
+            max-height: 300px;
+        }
+
+        .message-container {
+            margin-bottom: 20px;
+        }
+
+        .user-message {
+            background-color: #dcf8c6;
+            padding: 15px;
+            border-radius: 20px 20px 20px 0;
+            margin-left: auto;
+            max-width: 70%;
+            word-wrap: break-word;
+        }
+
+        .assistant-message {
+            background-color: #e8e8e8;
+            padding: 15px;
+            border-radius: 20px 20px 0 20px;
+            margin-right: auto;
+            max-width: 70%;
+            word-wrap: break-word;
+        }
+
+        .message-input {
+            width: calc(100% - 100px);
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 25px 0 0 25px;
+            outline: none;
+        }
+
+        .send-button {
+            width: 100px;
+            background-color: #5e8bff;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 0 25px 25px 0;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="chat-container">
+    <div class="chat-box">
+        <div class="chat-header">
+            <h4>Pet Care Assistant</h4>
+        </div>
+        <div class="chat-body" id="chat-history">
+            <!-- Chat history -->
+        </div>
+        <div class="chat-footer p-3">
+            <form class="d-flex" onsubmit="event.preventDefault(); getAssistantResponse()">
+                <input type="text" class="form-control message-input mr-2" id="promptInput" placeholder="Type your message here..." required>
+                <button type="submit" class="btn btn-primary send-button">Send</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    const promptInput = document.getElementById('promptInput');
+    const chatHistory = document.getElementById('chat-history');
+
+    function getAssistantResponse() {
+        const prompt = promptInput.value.trim(); // Trim to remove leading and trailing spaces
+
+        if (prompt === "") {
+            return; // Do nothing if input is empty
+        }
+
+        const userMessage = `
+            <div class="message-container d-flex justify-content-end">
+                <div class="user-message">${prompt}</div>
+            </div>`;
+        chatHistory.insertAdjacentHTML('beforeend', userMessage);
+
+        promptInput.value = "";
+
+        // API request
+        fetch(`https://api.qewertyy.dev/models?model_id=23&prompt=${prompt}`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            let responseText = data.content[0].text;
+            if (responseText.startsWith("md:")) {
+                responseText = responseText.substring(3);
+                const assistantMessage = `
+                    <div class="message-container d-flex justify-content-start">
+                        <div class="assistant-message" style="background-color: #fff; border: 1px solid #ddd; padding: 15px; border-radius: 20px;">${responseText}</div>
+                    </div>`;
+                chatHistory.insertAdjacentHTML('beforeend', assistantMessage);
+            } else {
+                const assistantMessage = `
+                    <div class="message-container d-flex justify-content-start">
+                        <div class="assistant-message">${responseText}</div>
+                    </div>`;
+                chatHistory.insertAdjacentHTML('beforeend', assistantMessage);
+            }
+            chatHistory.scrollTop = chatHistory.scrollHeight;
+        })
+        .catch(error => {
+            console.error('Error fetching assistant response:', error);
+            // Handle error
+        });
+    }
+</script>
+</body>
+</html>
