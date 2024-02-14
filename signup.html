@@ -5,17 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        .alert {
-            color: #721c24;
-            background-color: #f8d7da;
-            border-color: #f5c6cb;
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-    </style>
 </head>
 <body>
     <div class="container mt-5">
@@ -45,8 +34,9 @@
             </div>
             <button type="submit" class="btn btn-primary">Sign Up</button>
             <a href="https://someh1ng.github.io/petblog.github.io/login.html" class="btn btn-link">Already have an account? Login</a>
-            <div id="passwordMismatchAlert" class="alert d-none" role="alert">
-                Passwords do not match! Please check and reenter.
+            </div>
+            <div id="passwordMismatchAlert" class="alert alert-danger" role="alert">
+             Passwords do not match! Please check and reenter.
             </div>
         </form>
     </div>
