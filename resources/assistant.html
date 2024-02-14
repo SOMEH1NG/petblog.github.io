@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pet Care Assistant Chat</title>
+    <title>Pet Care Assistant</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
@@ -79,18 +80,45 @@
             border-radius: 0 25px 25px 0;
             cursor: pointer;
         }
+
+        .assistant-message img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .assistant-message b {
+            font-weight: bold;
+        }
+
+        .assistant-message i {
+            font-style: italic;
+        }
+
+        .assistant-message code {
+            background-color: #f8f9fa;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+
+        .assistant-message a {
+            color: #007bff;
+            text-decoration: underline;
+        }
     </style>
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Pet Care Blog</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class=nav-link" href="https://someh1ng.github.io/petblog.github.io/home.html">Home</a>
+                    <a class="nav-link" href="https://someh1ng.github.io/petblog.github.io/home.html">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="https://someh1ng.github.io/petblog.github.io/about.html">About</a>
@@ -113,73 +141,80 @@
             </ul>
         </div>
     </nav>
-<div class="chat-container">
-    <div class="chat-box">
-        <div class="chat-header">
-            <h4>Pet Care Assistant</h4>
-        </div>
-        <div class="chat-body" id="chat-history">
-            <!-- Chat history -->
-        </div>
-        <div class="chat-footer p-3">
-            <form class="d-flex" onsubmit="event.preventDefault(); getAssistantResponse()">
-                <input type="text" class="form-control message-input mr-2" id="promptInput" placeholder="Type your message here..." required>
-                <button type="submit" class="btn btn-primary send-button">Send</button>
-            </form>
+    <div class="chat-container">
+        <div class="chat-box">
+            <div class="chat-header">
+                <h4>Pet Assistant</h4>
+            </div>
+            <div class="chat-body" id="chat-history">
+                <!-- Chat history -->
+            </div>
+            <div class="chat-footer p-3">
+                <form class="d-flex" onsubmit="event.preventDefault(); getAssistantResponse()">
+                    <input type="text" class="form-control message-input mr-2" id="promptInput"
+                        placeholder="Type your message here..." required>
+                    <button type="submit" class="btn btn-primary send-button">Send</button>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 
-<script>
-    const promptInput = document.getElementById('promptInput');
-    const chatHistory = document.getElementById('chat-history');
+    <script>
+        const promptInput = document.getElementById('promptInput');
+        const chatHistory = document.getElementById('chat-history');
 
-    function getAssistantResponse() {
-        const prompt = promptInput.value.trim(); // Trim to remove leading and trailing spaces
-
-        if (prompt === "") {
-            return; // Do nothing if input is empty
+        function parseMarkdown(responseText) {
+            responseText = responseText.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>'); // Bold
+            responseText = responseText.replace(/\*(.*?)\*/g, '<i>$1</i>'); // Italics
+            responseText = responseText.replace(/`([^`]+)`/g, '<code>$1</code>'); // Code
+            responseText = responseText.replace(/\[([^[\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>'); // Links
+            responseText = responseText.replace(/!\[([^\]]+)\]\(([^)]+)\)/g, '<img src="$2" alt="$1">'); // Images
+            // Add more Markdown elements as needed
+            return responseText;
         }
 
-        const userMessage = `
-            <div class="message-container d-flex justify-content-end">
-                <div class="user-message">${prompt}</div>
-            </div>`;
-        chatHistory.insertAdjacentHTML('beforeend', userMessage);
+        function getAssistantResponse() {
+            const prompt = promptInput.value.trim();
 
-        promptInput.value = "";
-
-        // API request
-        fetch(`https://api.qewertyy.dev/models?model_id=23&prompt=${prompt}`, {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-            },
-        })
-        .then(response => response.json())
-        .then(data => {
-            let responseText = data.content[0].text;
-            if (responseText.startsWith("md:")) {
-                responseText = responseText.substring(3);
-                const assistantMessage = `
-                    <div class="message-container d-flex justify-content-start">
-                        <div class="assistant-message" style="background-color: #fff; border: 1px solid #ddd; padding: 15px; border-radius: 20px;">${responseText}</div>
-                    </div>`;
-                chatHistory.insertAdjacentHTML('beforeend', assistantMessage);
-            } else {
-                const assistantMessage = `
-                    <div class="message-container d-flex justify-content-start">
-                        <div class="assistant-message">${responseText}</div>
-                    </div>`;
-                chatHistory.insertAdjacentHTML('beforeend', assistantMessage);
+            if (prompt === "") {
+                return;
             }
-            chatHistory.scrollTop = chatHistory.scrollHeight;
-        })
-        .catch(error => {
-            console.error('Error fetching assistant response:', error);
-            // Handle error
-        });
-    }
-</script>
+
+            const userMessage = `
+                <div class="message-container d-flex justify-content-end">
+                    <div class="user-message">${prompt}</div>
+                </div>`;
+            chatHistory.insertAdjacentHTML('beforeend', userMessage);
+
+            promptInput.value = "";
+
+            fetch(`https://api.qewertyy.dev/models?model_id=23&prompt=${prompt}`, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                },
+            })
+                .then(response => response.json())
+                .then(data => {
+                    let responseText = data.content[0].text;
+
+                    if (responseText.startsWith("md:")) {
+                        responseText = responseText.substring(3);
+                        responseText = parseMarkdown(responseText);
+                    }
+
+                    const assistantMessage = `
+                        <div class="message-container d-flex justify-content-start">
+                            <div class="assistant-message">${responseText}</div>
+                        </div>`;
+                    chatHistory.insertAdjacentHTML('beforeend', assistantMessage);
+                    chatHistory.scrollTop = chatHistory.scrollHeight;
+                })
+                .catch(error => {
+                    console.error('Error fetching assistant response:', error);
+                });
+        }
+    </script>
 </body>
+
 </html>
