@@ -6,10 +6,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pet Care Assistant Chat</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Add custom styles for the chat */
+        body {
+            padding-top: 60px; /* Adjusted for the fixed navbar */
+        }
+
+        .chat-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .chat-box {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .chat-header {
+            background-color: #f8f9fa;
+            padding: 10px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .chat-body {
+            padding: 10px;
+            min-height: 200px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .chat-footer {
+            background-color: #f8f9fa;
+            padding: 10px;
+        }
+
+        .message-container {
+            margin-bottom: 10px;
+        }
+
+        .user-message {
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 10px;
+            padding: 8px;
+            max-width: 70%;
+        }
+
+        .assistant-message {
+            background-color: #e9ecef;
+            border-radius: 10px;
+            padding: 8px;
+            max-width: 70%;
+        }
+    </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <a class="navbar-brand" href="#">Pet Care Blog</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,19 +80,19 @@
                     <a class="nav-link" href="https://someh1ng.github.io/petblog.github.io/about.html">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="nav/caretips.html">Care Tips</a>
+                    <a class="nav-link" href="https://someh1ng.github.io/petblog.github.io/caretips.html">Care Tips</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="nav/health.html">Health</a>
+                    <a class="nav-link" href="https://someh1ng.github.io/petblog.github.io/health.html">Health</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="nav/breeds.html">Breeds</a>
+                    <a class="nav-link" href="https://someh1ng.github.io/petblog.github.io/breeds.html">Breeds</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="nav/training.html">Training</a>
+                    <a class="nav-link" href="https://someh1ng.github.io/petblog.github.io/training.html">Training</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="nav/account.html">Account</a>
+                    <a class="nav-link" href="https://someh1ng.github.io/petblog.github.io/account.html">Account</a>
                 </li>
             </ul>
         </div>
@@ -59,63 +115,49 @@
         </div>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-        const promptInput = document.getElementById('promptInput');
-        const chatHistory = document.getElementById('chat-history');
+    const promptInput = document.getElementById('promptInput');
+    const chatHistory = document.getElementById('chat-history');
 
-        function parseMarkdown(responseText) {
-            responseText = responseText.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>'); // Bold
-            responseText = responseText.replace(/\*(.*?)\*/g, '<i>$1</i>'); // Italics
-            responseText = responseText.replace(/`([^`]+)`/g, '<code>$1</code>'); // Code
-            responseText = responseText.replace(/\[([^[\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>'); // Links
-            responseText = responseText.replace(/!\[([^\]]+)\]\(([^)]+)\)/g, '<img src="$2" alt="$1">'); // Images
-            responseText = responseText.replace(/^(\d+\.\s.*(?:\n(?!\d+\.).*)*)/gm, '<ol>$1</ol>'); // Ordered List
-            responseText = responseText.replace(/^(\*\s.*(?:\n(?!\*).*)*)/gm, '<ul>$1</ul>'); // Unordered List
-            // Add more Markdown elements as needed
-            return responseText;
+    function getAssistantResponse() {
+        const prompt = promptInput.value.trim();
+
+        if (prompt === "") {
+            return;
         }
 
-        function getAssistantResponse() {
-            const prompt = promptInput.value.trim();
+        const userMessage = `
+            <div class="message-container d-flex justify-content-end">
+                <div class="user-message">${prompt}</div>
+            </div>`;
+        chatHistory.insertAdjacentHTML('beforeend', userMessage);
 
-            if (prompt === "") {
-                return;
-            }
+        promptInput.value = "";
 
-            const userMessage = `
-                <div class="message-container d-flex justify-content-end">
-                    <div class="user-message">${prompt}</div>
-                </div>`;
-            chatHistory.insertAdjacentHTML('beforeend', userMessage);
+        fetch(`https://api.qewertyy.dev/models?model_id=23&prompt=${prompt}`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+            },
+        })
+            .then(response => response.json())
+            .then(data => {
+                const responseText = data.content[0].text;
 
-            promptInput.value = "";
-
-            fetch(`https://api.qewertyy.dev/models?model_id=23&prompt=${prompt}`, {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                },
+                const assistantMessage = `
+                    <div class="message-container d-flex justify-content-start">
+                        <div class="assistant-message">${responseText}</div>
+                    </div>`;
+                chatHistory.insertAdjacentHTML('beforeend', assistantMessage);
+                chatHistory.scrollTop = chatHistory.scrollHeight;
             })
-                .then(response => response.json())
-                .then(data => {
-                    let responseText = data.content[0].text;
-
-                    if (responseText.startsWith("md:")) {
-                        responseText = responseText.substring(3);
-                        responseText = parseMarkdown(responseText);
-                    }
-
-                    const assistantMessage = `
-                        <div class="message-container d-flex justify-content-start">
-                            <div class="assistant-message">${responseText}</div>
-                        </div>`;
-                    chatHistory.insertAdjacentHTML('beforeend', assistantMessage);
-                    chatHistory.scrollTop = chatHistory.scrollHeight;
-                })
-                .catch(error => {
-                    console.error('Error fetching assistant response:', error);
-                });
-        }
+            .catch(error => {
+                console.error('Error fetching assistant response:', error);
+            });
+    }
     </script>
 </body>
 
