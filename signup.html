@@ -34,9 +34,8 @@
             </div>
             <button type="submit" class="btn btn-primary">Sign Up</button>
             <a href="https://someh1ng.github.io/petblog.github.io/login.html" class="btn btn-link">Already have an account? Login</a>
-            </div>
-            <div id="passwordMismatchAlert" class="alert alert-danger" role="alert">
-             Passwords do not match! Please check and reenter.
+            <div id="passwordMismatchAlert" class="alert alert-danger d-none" role="alert">
+                Passwords do not match! Please check and reenter.
             </div>
         </form>
     </div>
@@ -46,26 +45,14 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         $(function() {
-            $('#togglePassword').click(function() {
-                var passwordInput = $('#password');
+            $('#togglePassword, #toggleConfirmPassword').click(function() {
+                var inputField = $(this).closest('.form-group').find('input');
                 var button = $(this);
-                if (passwordInput.attr('type') === 'password') {
-                    passwordInput.attr('type', 'text');
+                if (inputField.attr('type') === 'password') {
+                    inputField.attr('type', 'text');
                     button.text('Hide');
                 } else {
-                    passwordInput.attr('type', 'password');
-                    button.text('Show');
-                }
-            });
-
-            $('#toggleConfirmPassword').click(function() {
-                var confirmPasswordInput = $('#confirmPassword');
-                var button = $(this);
-                if (confirmPasswordInput.attr('type') === 'password') {
-                    confirmPasswordInput.attr('type', 'text');
-                    button.text('Hide');
-                } else {
-                    confirmPasswordInput.attr('type', 'password');
+                    inputField.attr('type', 'password');
                     button.text('Show');
                 }
             });
@@ -76,9 +63,9 @@
                 var confirmPassword = $('#confirmPassword').val();
                 if (password !== confirmPassword) {
                     $('#passwordMismatchAlert').removeClass('d-none');
-                    return;
+                } else {
+                    this.submit();
                 }
-                this.submit();
             });
         });
     </script>
