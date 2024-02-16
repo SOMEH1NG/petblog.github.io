@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,10 +15,12 @@
         }
     </style>
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Pet Care Blog</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -26,48 +29,49 @@
                     <a class="nav-link" href="https://someh1ng.github.io/petblog.github.io/about.html">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="caretips.html">Care Tips</a>
+                    <a class="nav-link" href="nav/caretips.html">Care Tips</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="health.html">Health</a>
+                    <a class="nav-link" href="nav/health.html">Health</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="breeds.html">Breeds</a>
+                    <a class="nav-link" href="nav/breeds.html">Breeds</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="training.html">Training</a>
+                    <a class="nav-link" href="nav/training.html">Training</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="account.html">Account <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="nav/account.html">Account <span class="sr-only">(current)</span></a>
                 </li>
             </ul>
         </div>
     </nav>
 
     <div class="container mt-5">
-        <h1>Account</h1>
+        <h1 class="mb-4">Account</h1>
         <div class="row">
-            <div class="col-md-4">
-                <img src="https://someh1ng.github.io/petblog.github.io/user.png" alt="User Image" class="img-fluid profile-image mb-3">
-                <button class="btn btn-primary btn-block mb-3">Edit Profile</button>
+            <div class="col-md-4 text-center">
+                <img src="https://someh1ng.github.io/petblog.github.io/user.png" alt="User Image"
+                    class="img-fluid profile-image mb-3">
+                <button class="btn btn-primary btn-block">Edit Profile</button>
             </div>
             <div class="col-md-8">
                 <form>
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="text" class="form-control" id="name" placeholder="Enter your name" readonly value="Kunal Gaikwad">
+                        <input type="text" class="form-control" id="name" readonly value="Kunal Gaikwad">
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="Enter your email" readonly value="kunalgaikwad9322@gmail.com">
+                        <input type="email" class="form-control" id="email" readonly value="kunalgaikwad9322@gmail.com">
                     </div>
                     <div class="form-group">
                         <label for="joinDate">Join Date</label>
-                        <input type="text" class="form-control" id="joinDate" placeholder="Join Date" readonly value="January 1, 2024">
+                        <input type="text" class="form-control" id="joinDate" readonly value="January 1, 2024">
                     </div>
                     <div class="form-group">
                         <label for="petsOwned">Pets Owned</label>
-                        <input type="text" class="form-control" id="petsOwned" placeholder="Pets Owned" readonly value="1 dog, 2 cats">
+                        <input type="text" class="form-control" id="petsOwned" readonly value="1 dog, 2 cats">
                     </div>
                     <div class="form-group">
                         <label for="bio">Bio</label>
@@ -83,4 +87,5 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>
